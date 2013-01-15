@@ -55,6 +55,7 @@ chmod 740 /system/xbin/strace
 chmod 000 /system/xbin/tcpdump
 chmod 740 /system/xbin/vim
 chmod 000 /system/xbin/nano
+chmod 000 /system/xbin/telnet
 # Let's make sure they aren't in bin either
 # Can we make this cleaner? Maybe with IF statements?
 chmod 000 /system/bin/irsii
@@ -72,6 +73,7 @@ chmod 740 /system/bin/strace
 chmod 000 /system/bin/tcpdump
 chmod 740 /system/bin/vim
 chmod 000 /system/bin/nano
+chmod 000 /system/bin/telnet
 
 ### This disables Bluetooth (Most users want it on)
 ###chmod 000 /system/bin/bluetoothd
