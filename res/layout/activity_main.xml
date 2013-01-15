@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="14dp"
-        android:text="SecDroid V0.2 Alpha"
+        android:text="SecDroid V0.3 Alpha"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
@@ -38,18 +38,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
-        android:text="This app executes a script that hardens android. For more information please visit:"
+        android:text=" This app executes a script that hardens android.  For more information please visit:"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
-        android:id="@+id/textView4"
+    <Button
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView1"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_alignRight="@+id/button1"
         android:layout_below="@+id/textView3"
-        android:layout_marginTop="58dp"
-        android:autoLink="web"
-        android:text="www.xda-developers.com/"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_marginTop="83dp"
+        android:text="XDA Thread" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_alignRight="@+id/button2"
+        android:layout_below="@+id/button2"
+        android:layout_marginTop="23dp"
+        android:text="WebSite" />
 
 </RelativeLayout>

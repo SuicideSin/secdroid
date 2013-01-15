@@ -23,10 +23,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import com.shadcat.secdroid.R;
+
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.app.Activity;
-import android.view.Menu;
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -70,7 +72,6 @@ public class MainActivity extends Activity {
 				    }
 				//Here we change the permissions of the app to execute"
 				//Using "Runtime.getRuntime()" to execute variable "permisions"
-			Shell shell = new Shell();
 			String permissions[]={"su","-c", "chmod 0700 /data/data/com.shadcat.secdroid/files/hardened.sh"}; //Setting variable 'permissions' to make our script executable
 			try {
 				Process process = Runtime.getRuntime().exec(permissions); //Executing variable "permissions"
@@ -78,12 +79,47 @@ public class MainActivity extends Activity {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//Now we run our script via Shell.java class (Thanks Adam Outler for the Class)
-			String command[]={"su", "-c", "/data/data/com.shadcat.secdroid/files/hardened.sh"};
-			String text = shell.sendShellCommand(command);
+			//Now we run our script via "Runtime.getRuntime().exec"
+			//No longer need seperate shell class
+			String execscript[]={"su","-c", "/data/data/com.shadcat.secdroid/files/hardened.sh"}; //Setting variable 'execscript' to run our script
+			try {
+				Process process = Runtime.getRuntime().exec(execscript); //Executing variable "execscript"
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			//Here we display text showing we are secure now!
+			String text = "You Device is now Secure! Thanks for using SecDroid!";
 			setNewTextInTextView(text);
 			}
 		});
+		
+		// XDA Thread button 
+		// Having the XDA Thread button open XDA Thread
+		
+		Button button2 = (Button) findViewById(R.id.button2);
+		button2.setOnClickListener(new View.OnClickListener() {
+	        public void onClick(View v) {
+	            Intent myWebLink = new Intent(android.content.Intent.ACTION_VIEW);
+	            myWebLink.setData(Uri.parse("http://forum.xda-developers.com/showthread.php?t=2086276"));
+	                startActivity(myWebLink);
+	         }
+		
+		});
+		
+		// WebSite button 
+				// Having the WebSite button the website
+				
+				Button button3 = (Button) findViewById(R.id.button3);
+				button3.setOnClickListener(new View.OnClickListener() {
+			        public void onClick(View v) {
+			            Intent myWebLink = new Intent(android.content.Intent.ACTION_VIEW);
+			            myWebLink.setData(Uri.parse("http://www.shadowdcatconsulting.com"));
+			                startActivity(myWebLink);
+			         }
+				
+				});
 	}
 	//This section let's us see the output of the script (Verbose)
 	// We can use this to see if it executed properly and what did or did not work 
@@ -93,14 +129,6 @@ public class MainActivity extends Activity {
 		TextView tv= new TextView(this); 
 		tv.setText(text);
 		setContentView(tv);
-	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		// Not used yet - Held for future use.
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
 	}
 
 }

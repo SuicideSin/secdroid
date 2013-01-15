@@ -45,21 +45,40 @@ chmod 000 /system/xbin/nc
 chmod 000 /system/xbin/netserver
 chmod 000 /system/xbin/netperf
 chmod 000 /system/xbin/opcontrol
-chmod 000 /system/bin/scp
+chmod 000 /system/xbin/scp
 chmod 740 /system/xbin/rsync
 chmod 740 /system/xbin/sdptest
-chmod 000 /system/bin/ssh
-chmod 000 /system/bin/sshd
-chmod 000 /system/bin/ssh-keygen
-
+chmod 000 /system/xbin/ssh
+chmod 000 /system/xbin/sshd
+chmod 000 /system/xbin/ssh-keygen
 chmod 740 /system/xbin/strace
 chmod 000 /system/xbin/tcpdump
 chmod 740 /system/xbin/vim
 chmod 000 /system/xbin/nano
+# Let's make sure they aren't in bin either
+# Can we make this cleaner? Maybe with IF statements?
+chmod 000 /system/bin/irsii
+chmod 000 /system/bin/nc
+chmod 000 /system/bin/netserver
+chmod 000 /system/bin/netperf
+chmod 000 /system/bin/opcontrol
+chmod 000 /system/bin/scp
+chmod 740 /system/bin/rsync
+chmod 740 /system/bin/sdptest
+chmod 000 /system/bin/ssh
+chmod 000 /system/bin/sshd
+chmod 000 /system/bin/ssh-keygen
+chmod 740 /system/bin/strace
+chmod 000 /system/bin/tcpdump
+chmod 740 /system/bin/vim
+chmod 000 /system/bin/nano
 
+### This disables Bluetooth (Most users want it on)
 ###chmod 000 /system/bin/bluetoothd
+### ONLY root should need these:
 chmod 750 /system/bin/iptables
 chmod 750 /system/bin/ping
+### Let's remove suid from ping (prevent a Privledge escalation attack)
 busybox chmod -s /system/bin/ping
 ## This is the last step of the hardening
 ## This will be uncommented only when the system is configured
@@ -70,7 +89,7 @@ busybox chmod -s /system/bin/ping
 # Will implement at a later date
 #/data/local/removesoftware.sh
 #
-# disable the Packet Management binary - Prevents installing apps via ADB
+# disable the Packet Management binary - Prevents installing apps via ADB or remotely
 chmod 000 /system/bin/pm
 # Disable the adbd daemon
 mount -o rw,remount -t rootfs rootfs /
