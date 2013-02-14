@@ -14,15 +14,6 @@
         android:text="SecDroid V0.3 Alpha"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="105dp"
-        android:text="Secure Phone" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -47,18 +38,25 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/button1"
         android:layout_alignRight="@+id/button1"
-        android:layout_below="@+id/textView3"
-        android:layout_marginTop="83dp"
+        android:layout_centerVertical="true"
         android:text="XDA Thread" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp"
+        android:text="Secure Phone" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_alignRight="@+id/button2"
-        android:layout_below="@+id/button2"
-        android:layout_marginTop="23dp"
-        android:text="WebSite" />
+        android:layout_alignLeft="@+id/button1"
+        android:layout_below="@+id/button1"
+        android:layout_marginTop="46dp"
+        android:text="ENABLE ADB" />
 
 </RelativeLayout>

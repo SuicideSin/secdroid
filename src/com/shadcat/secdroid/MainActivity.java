@@ -114,10 +114,51 @@ public class MainActivity extends Activity {
 				Button button3 = (Button) findViewById(R.id.button3);
 				button3.setOnClickListener(new View.OnClickListener() {
 			        public void onClick(View v) {
-			            Intent myWebLink = new Intent(android.content.Intent.ACTION_VIEW);
-			            myWebLink.setData(Uri.parse("http://www.shadowdcatconsulting.com"));
-			                startActivity(myWebLink);
-			         }
+			        	File destFile = new File(getFilesDir(),"enableadb.sh");
+						try {
+
+						        InputStream in = getAssets().open("enableadb.sh");
+						        OutputStream out = new FileOutputStream(destFile);
+
+						        byte[] buf = new byte[1024];
+						        int len;
+						        while ((len = in.read(buf)) > 0) {
+						            out.write(buf, 0, len);
+						        }
+						        in.close();
+						        out.close();
+						        System.out.println("File copied.");
+						    } catch (FileNotFoundException ex) {
+						        System.out
+						                .println(ex.getMessage() + " in the specified directory.");
+						        System.exit(0);
+						    } catch (IOException e) {
+						        System.out.println(e.getMessage());
+						    }
+						//Here we change the permissions of the app to execute"
+						//Using "Runtime.getRuntime()" to execute variable "permisions"
+					String adbperm[]={"su","-c", "chmod 0700 /data/data/com.shadcat.secdroid/files/enableadb.sh"}; //Setting variable 'permissions' to make our script executable
+					try {
+						Process process = Runtime.getRuntime().exec(adbperm); //Executing variable "permissions"
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					//Now we run our script via "Runtime.getRuntime().exec"
+					//No longer need seperate shell class
+					String execadb[]={"su","-c", "/data/data/com.shadcat.secdroid/files/enableadb.sh"}; //Setting variable 'execscript' to run our script
+					try {
+						Process process = Runtime.getRuntime().exec(execadb); //Executing variable "execscript"
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					//Here we display text showing we are secure now!
+					String text = "ADBD is ENABLED!";
+					setNewTextInTextView(text);
+					}
+			           
 				
 				});
 	}
