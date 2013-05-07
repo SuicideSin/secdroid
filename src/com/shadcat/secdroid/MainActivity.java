@@ -108,8 +108,119 @@ public class MainActivity extends Activity {
 		
 		});
 		
-		// WebSite button 
-				// Having the WebSite button the website
+final Button button4 = (Button)  findViewById(R.id.button4);
+		
+		button4.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// When button is pressed run shell script
+				// This part copies the "noBT.sh assets to the internal memory of the device
+				// Can this be done purely within the app? No need to copy out the script?
+				File destFile = new File(getFilesDir(),"noBT.sh");
+				try {
+
+				        InputStream in = getAssets().open("noBT.sh");
+				        OutputStream out = new FileOutputStream(destFile);
+
+				        byte[] buf = new byte[1024];
+				        int len;
+				        while ((len = in.read(buf)) > 0) {
+				            out.write(buf, 0, len);
+				        }
+				        in.close();
+				        out.close();
+				        System.out.println("File copied.");
+				    } catch (FileNotFoundException ex) {
+				        System.out
+				                .println(ex.getMessage() + " in the specified directory.");
+				        System.exit(0);
+				    } catch (IOException e) {
+				        System.out.println(e.getMessage());
+				    }
+				//Here we change the permissions of the app to execute"
+				//Using "Runtime.getRuntime()" to execute variable "permisions"
+			String permissions[]={"su","-c", "chmod 0700 /data/data/com.shadcat.secdroid/files/noBT.sh"}; //Setting variable 'permissions' to make our script executable
+			try {
+				Process process = Runtime.getRuntime().exec(permissions); //Executing variable "permissions"
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//Now we run our script via "Runtime.getRuntime().exec"
+			//No longer need seperate shell class
+			String execscript[]={"su","-c", "/data/data/com.shadcat.secdroid/files/noBT.sh"}; //Setting variable 'execscript' to run our script
+			try {
+				Process process = Runtime.getRuntime().exec(execscript); //Executing variable "execscript"
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			//Here we display text showing we are secure now!
+			String text = "Bluetooth is now Disabled! Thanks for using SecDroid!";
+			setNewTextInTextView(text);
+			}
+		});
+		
+final Button button5 = (Button)  findViewById(R.id.button5);
+		
+		button4.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// When button is pressed run shell script
+				// This part copies the "yesBT.sh assets to the internal memory of the device
+				// Can this be done purely within the app? No need to copy out the script?
+				File destFile = new File(getFilesDir(),"yesBT.sh");
+				try {
+
+				        InputStream in = getAssets().open("yesBT.sh");
+				        OutputStream out = new FileOutputStream(destFile);
+
+				        byte[] buf = new byte[1024];
+				        int len;
+				        while ((len = in.read(buf)) > 0) {
+				            out.write(buf, 0, len);
+				        }
+				        in.close();
+				        out.close();
+				        System.out.println("File copied.");
+				    } catch (FileNotFoundException ex) {
+				        System.out
+				                .println(ex.getMessage() + " in the specified directory.");
+				        System.exit(0);
+				    } catch (IOException e) {
+				        System.out.println(e.getMessage());
+				    }
+				//Here we change the permissions of the app to execute"
+				//Using "Runtime.getRuntime()" to execute variable "permisions"
+			String permissions[]={"su","-c", "chmod 0700 /data/data/com.shadcat.secdroid/files/yesBT.sh"}; //Setting variable 'permissions' to make our script executable
+			try {
+				Process process = Runtime.getRuntime().exec(permissions); //Executing variable "permissions"
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//Now we run our script via "Runtime.getRuntime().exec"
+			//No longer need seperate shell class
+			String execscript[]={"su","-c", "/data/data/com.shadcat.secdroid/files/yesBT.sh"}; //Setting variable 'execscript' to run our script
+			try {
+				Process process = Runtime.getRuntime().exec(execscript); //Executing variable "execscript"
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			//Here we display text showing we are secure now!
+			String text = "Bluetooth is now Enabled! Thanks for using SecDroid!";
+			setNewTextInTextView(text);
+			}
+		});
+		
+		
+		// This button enables ADBD again.
+				// Enable ADBD
 				
 				Button button3 = (Button) findViewById(R.id.button3);
 				button3.setOnClickListener(new View.OnClickListener() {
@@ -155,7 +266,7 @@ public class MainActivity extends Activity {
 					}
 					
 					//Here we display text showing we are secure now!
-					String text = "ADBD is ENABLED!";
+					String text = "ADBD is ENABLED! Please run 'Secure Phone' when done!";
 					setNewTextInTextView(text);
 					}
 			           
